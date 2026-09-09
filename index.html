@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SATlab</title>
+
+<style>
+  :root{
+    --bg:#f5f6f8;
+    --sidebar-bg:#fafbfc;
+    --border:#e7e9ec;
+    --text-dark:#0f1420;
+    --text-gray:#8a8f98;
+    --active-bg:#0f1420;
+    --active-text:#ffffff;
+    --card-bg:#ffffff;
+    --accent:#0f1420;
+  }
+
+  *{
+    box-sizing:border-box;
+  }
+
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text-dark);
+  }
+
+  .app{
+    display:flex;
+    min-height:100vh;
+  }
+
+  /* ================= SIDEBAR ================= */
+
+  .sidebar{
+    width:250px;
+    background:var(--sidebar-bg);
+    border-right:1px solid var(--border);
+    display:flex;
+    flex-direction:column;
+    padding:20px 14px;
+    transition:width .2s ease, padding .2s ease;
+    flex-shrink:0;
+    position:relative;
+  }
+
+  .sidebar.collapsed{
+    width:76px;
+    padding:20px 10px;
+  }
+
+  .sidebar-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:26px;
+    padding:0 4px;
+    min-height:32px;
+  }
+
+  .logo-full{
+    font-size:20px;
+    font-weight:800;
+    font-style:italic;
+    letter-spacing:-0.5px;
+  }
+
+  .logo-mini{
+    font-size:20px;
+    font-weight:800;
+    font-style:italic;
+    display:none;
+  }
+
+  .sidebar.collapsed .logo-full{
+    display:none;
+  }
+
+  .sidebar.collapsed .logo-mini{
+    display:inline;
+  }
+
+  .sidebar.collapsed .sidebar-header{
+    justify-content:center;
+  }
+
+  /* COLLAPSE BUTTON */
+
+  .toggle-btn{
+    border:1px solid var(--border);
+    background:#fff;
+    cursor:pointer;
+    color:var(--text-gray);
+    width:32px;
+    height:32px;
+    padding:0;
+    border-radius:8px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:.15s ease;
+  }
+
+  .toggle-btn:hover{
+    background:#eef0f3;
+    color:var(--text-dark);
+  }
+
+  .toggle-btn svg{
+    width:18px;
+    height:18px;
+  }
+
+  .sidebar.collapsed .toggle-btn{
+    position:absolute;
+    right:-16px;
+    top:20px;
+    background:#fff;
+    z-index:10;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+  }
+
+  /* MENU */
+
+  .menu-label{
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.08em;
+    color:var(--text-gray);
+    padding:0 10px;
+    margin-bottom:10px;
+  }
+
+  .sidebar.collapsed .menu-label{
+    display:none;
+  }
+
+  .nav{
+    display:flex;
+    flex-direction:column;
+    gap:4px;
+  }
+
+  .nav-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    width:100%;
+    border:none;
+    background:transparent;
+    padding:11px 12px;
+    border-radius:12px;
+    font-size:14.5px;
+    font-weight:600;
+    color:var(--text-dark);
+    cursor:pointer;
+    text-align:left;
+    transition:background .15s ease;
+  }
+
+  .nav-item:hover{
+    background:#eef0f3;
+  }
+
+  .nav-item.active{
+    background:var(--active-bg);
+    color:var(--active-text);
+  }
+
+  .nav-item svg{
+    flex-shrink:0;
+    width:19px;
+    height:19px;
+  }
+
+  .sidebar.collapsed .nav-item{
+    justify-content:center;
+    padding:12px;
+  }
+
+  .sidebar.collapsed .nav-text{
+    display:none;
+  }
+
+  /* ================= MAIN ================= */
+
+  .content{
+    flex:1;
+    padding:36px 44px;
+    min-width:0;
+  }
+
+  .page{
+    display:none;
+  }
+
+  .page.active{
+    display:block;
+  }
+
+  .page-title{
+    font-size:26px;
+    font-weight:800;
+    margin:0 0 4px;
+  }
+
+  .page-subtitle{
+    color:var(--text-gray);
+    font-size:14.5px;
+    margin:0 0 28px;
+  }
+
+  /* ================= CARD ================= */
+
+  .card{
+    background:var(--card-bg);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:28px;
+    max-width:900px;
+  }
+
+  .card h2{
+    margin:0 0 6px;
+    font-size:19px;
+    font-weight:700;
+  }
+
+  .card p.desc{
+    margin:0 0 26px;
+    color:var(--text-gray);
+    font-size:13.5px;
+  }
+
+  /* ================= MODULES ================= */
+
+  .section-title{
+    font-size:16px;
+    font-weight:800;
+    margin:26px 0 14px;
+    padding-bottom:10px;
+    border-bottom:1px solid var(--border);
+  }
+
+  .module-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+  }
+
+  .module{
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:18px;
+    background:#fff;
+  }
+
+  .module-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:16px;
+  }
+
+  .module-name{
+    font-size:14px;
+    font-weight:800;
+  }
+
+  .module-badge{
+    font-size:11px;
+    font-weight:700;
+    color:var(--text-gray);
+    background:#f3f4f6;
+    padding:5px 8px;
+    border-radius:7px;
+  }
+
+  .input-group{
+    margin-bottom:12px;
+  }
+
+  .input-group:last-child{
+    margin-bottom:0;
+  }
+
+  .input-group label{
+    display:flex;
+    justify-content:space-between;
+    font-size:13px;
+    font-weight:600;
+    margin-bottom:8px;
+  }
+
+  .input-group label .val{
+    color:var(--text-gray);
+    font-weight:600;
+  }
+
+  .input-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+
+  input[type="range"]{
+    flex:1;
+    accent-color:var(--accent);
+  }
+
+  input[type="number"]{
+    width:62px;
+    padding:7px 6px;
+    border-radius:8px;
+    border:1px solid var(--border);
+    font-size:14px;
+    text-align:center;
+  }
+
+  /* ================= RESULTS ================= */
+
+  .results{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:14px;
+    margin-top:28px;
+  }
+
+  .result-box{
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:18px 14px;
+    text-align:center;
+  }
+
+  .result-box .label{
+    font-size:12.5px;
+    color:var(--text-gray);
+    font-weight:700;
+    margin-bottom:6px;
+  }
+
+  .result-box .score{
+    font-size:28px;
+    font-weight:800;
+  }
+
+  .result-box .range{
+    font-size:11.5px;
+    color:var(--text-gray);
+    margin-top:4px;
+  }
+
+  .route-info{
+    margin-top:18px;
+    padding:13px 15px;
+    border-radius:10px;
+    background:#f6f7f8;
+    font-size:12.5px;
+    color:var(--text-gray);
+  }
+
+  .route-info strong{
+    color:var(--text-dark);
+  }
+
+  .disclaimer{
+    margin-top:16px;
+    font-size:12px;
+    color:var(--text-gray);
+    line-height:1.5;
+  }
+
+  /* ================= EMPTY ================= */
+
+  .empty-state{
+    border:1px dashed var(--border);
+    border-radius:16px;
+    padding:60px 20px;
+    text-align:center;
+    color:var(--text-gray);
+    max-width:720px;
+  }
+
+  /* ================= MOBILE ================= */
+
+  @media (max-width:700px){
+
+    .sidebar{
+      width:76px;
+      padding:20px 10px;
+    }
+
+    .sidebar .logo-full{
+      display:none;
+    }
+
+    .sidebar .logo-mini{
+      display:inline;
+    }
+
+    .sidebar .sidebar-header{
+      justify-content:center;
+    }
+
+    .sidebar .menu-label{
+      display:none;
+    }
+
+    .sidebar .nav-item{
+      justify-content:center;
+      padding:12px;
+    }
+
+    .sidebar .nav-text{
+      display:none;
+    }
+
+    .sidebar .toggle-btn{
+      position:absolute;
+      right:-16px;
+      top:20px;
+      background:#fff;
+      z-index:10;
+      box-shadow:0 2px 8px rgba(0,0,0,.08);
+    }
+
+    .content{
+      padding:24px 18px;
+    }
+
+    .module-grid{
+      grid-template-columns:1fr;
+    }
+
+    .results{
+      grid-template-columns:1fr;
+    }
+
+    .card{
+      padding:20px;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <!-- ================= SIDEBAR ================= -->
+
+  <aside class="sidebar" id="sidebar">
+
+    <div class="sidebar-header">
+
+      <span class="logo-full">SATlab</span>
+      <span class="logo-mini">S</span>
+
+      <button class="toggle-btn" id="toggleBtn" title="Menyuni kichraytirish">
+
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <rect x="3" y="4" width="18" height="16" rx="2"></rect>
+          <line x1="9" y1="4" x2="9" y2="20"></line>
+        </svg>
+
+      </button>
+
+    </div>
+
+    <div class="menu-label">MENU</div>
+
+    <nav class="nav">
+
+      <button class="nav-item active" data-page="home">
+
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M3 9.5L12 3l9 6.5"></path>
+          <path d="M5 10v9a1 1 0 0 0 1 1h3v-6h6v6h3a1 1 0 0 0 1-1v-9"></path>
+        </svg>
+
+        <span class="nav-text">Home</span>
+
+      </button>
+
+
+      <button class="nav-item" data-page="practice">
+
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <rect x="3" y="7" width="18" height="10" rx="2" transform="rotate(-15 12 12)"></rect>
+          <path d="M8 9l1 2M12 8l1 2M16 7l1 2" transform="rotate(-15 12 12)"></path>
+        </svg>
+
+        <span class="nav-text">Practice</span>
+
+      </button>
+
+    </nav>
+
+  </aside>
+
+
+  <!-- ================= MAIN ================= -->
+
+  <main class="content">
+
+
+    <!-- ================= HOME ================= -->
+
+    <section class="page active" id="page-home">
+
+      <h1 class="page-title">Home</h1>
+
+      <p class="page-subtitle">
+        SAT natijangizni tez va oson hisoblang
+      </p>
+
+
+      <div class="card">
+
+        <h2>SAT Score Calculator</h2>
+
+        <p class="desc">
+          Har bir moduldagi to‘g‘ri javoblar sonini kiriting.
+          Natija avtomatik ravishda yangilanadi.
+        </p>
+
+
+        <!-- ================= MATH ================= -->
+
+        <div class="section-title">
+          Math
+        </div>
+
+        <div class="module-grid">
+
+
+          <!-- MATH MODULE 1 -->
+
+          <div class="module">
+
+            <div class="module-header">
+
+              <span class="module-name">
+                Module 1
+              </span>
+
+              <span class="module-badge">
+                22 questions
+              </span>
+
+            </div>
+
+
+            <div class="input-group">
+
+              <label>
+                To‘g‘ri javoblar
+
+                <span class="val" id="mathM1Label">
+                  11 / 22
+                </span>
+              </label>
+
+              <div class="input-row">
+
+                <input
+                  type="range"
+                  id="mathM1Range"
+                  min="0"
+                  max="22"
+                  value="11"
+                >
+
+                <input
+                  type="number"
+                  id="mathM1Number"
+                  min="0"
+                  max="22"
+                  value="11"
+                >
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- MATH MODULE 2 -->
+
+          <div class="module">
+
+            <div class="module-header">
+
+              <span class="module-name">
+                Module 2
+              </span>
+
+              <span class="module-badge" id="mathRouteBadge">
+                Adaptive
+              </span>
+
+            </div>
+
+
+            <div class="input-group">
+
+              <label>
+                To‘g‘ri javoblar
+
+                <span class="val" id="mathM2Label">
+                  11 / 22
+                </span>
+              </label>
+
+              <div class="input-row">
+
+                <input
+                  type="range"
+                  id="mathM2Range"
+                  min="0"
+                  max="22"
+                  value="11"
+                >
+
+                <input
+                  type="number"
+                  id="mathM2Number"
+                  min="0"
+                  max="22"
+                  value="11"
+                >
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- ================= ENGLISH ================= -->
+
+        <div class="section-title">
+          English / Reading & Writing
+        </div>
+
+        <div class="module-grid">
+
+
+          <!-- RW MODULE 1 -->
+
+          <div class="module">
+
+            <div class="module-header">
+
+              <span class="module-name">
+                Module 1
+              </span>
+
+              <span class="module-badge">
+                27 questions
+              </span>
+
+            </div>
+
+
+            <div class="input-group">
+
+              <label>
+                To‘g‘ri javoblar
+
+                <span class="val" id="rwM1Label">
+                  14 / 27
+                </span>
+              </label>
+
+              <div class="input-row">
+
+                <input
+                  type="range"
+                  id="rwM1Range"
+                  min="0"
+                  max="27"
+                  value="14"
+                >
+
+                <input
+                  type="number"
+                  id="rwM1Number"
+                  min="0"
+                  max="27"
+                  value="14"
+                >
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- RW MODULE 2 -->
+
+          <div class="module">
+
+            <div class="module-header">
+
+              <span class="module-name">
+                Module 2
+              </span>
+
+              <span class="module-badge" id="rwRouteBadge">
+                Adaptive
+              </span>
+
+            </div>
+
+
+            <div class="input-group">
+
+              <label>
+                To‘g‘ri javoblar
+
+                <span class="val" id="rwM2Label">
+                  14 / 27
+                </span>
+              </label>
+
+              <div class="input-row">
+
+                <input
+                  type="range"
+                  id="rwM2Range"
+                  min="0"
+                  max="27"
+                  value="14"
+                >
+
+                <input
+                  type="number"
+                  id="rwM2Number"
+                  min="0"
+                  max="27"
+                  value="14"
+                >
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- ================= RESULTS ================= -->
+
+        <div class="results">
+
+          <div class="result-box">
+
+            <div class="label">
+              MATH
+            </div>
+
+            <div class="score" id="mathScore">
+              400
+            </div>
+
+            <div class="range">
+              200 - 800
+            </div>
+
+          </div>
+
+
+          <div class="result-box">
+
+            <div class="label">
+              ENGLISH
+            </div>
+
+            <div class="score" id="rwScore">
+              400
+            </div>
+
+            <div class="range">
+              200 - 800
+            </div>
+
+          </div>
+
+
+          <div class="result-box">
+
+            <div class="label">
+              OVERALL
+            </div>
+
+            <div class="score" id="totalScore">
+              800
+            </div>
+
+            <div class="range">
+              400 - 1600
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="route-info">
+
+          <strong>Adaptive path:</strong>
+
+          Math:
+          <span id="mathRouteText">Module 2 difficulty depends on Module 1</span>
+
+          &nbsp; | &nbsp;
+
+          English:
+          <span id="rwRouteText">Module 2 difficulty depends on Module 1</span>
+
+        </div>
+
+
+        <p class="disclaimer">
+          * Bu taxminiy SAT score estimator. Digital SAT adaptive scoring
+          tizimida savollarning qiyinligi ham hisobga olinadi va College Board
+          aniq raw-to-scaled conversion jadvalini to‘liq ochiq bermaydi.
+          Shuning uchun bu natija rasmiy SAT score o‘rnini bosmaydi.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= PRACTICE ================= -->
+
+    <section class="page" id="page-practice">
+
+      <h1 class="page-title">
+        Practice
+      </h1>
+
+      <p class="page-subtitle">
+        Mashqlar bo‘limi
+      </p>
+
+      <div class="empty-state">
+        Practice bo‘limi tez orada qo‘shiladi
+      </div>
+
+    </section>
+
+  </main>
+
+</div>
+
+
+<script>
+
+  /* =====================================================
+     SIDEBAR
+  ===================================================== */
+
+  const sidebar = document.getElementById("sidebar");
+  const toggleBtn = document.getElementById("toggleBtn");
+
+  toggleBtn.addEventListener("click", () => {
+
+    sidebar.classList.toggle("collapsed");
+
+  });
+
+
+  /* =====================================================
+     PAGE NAVIGATION
+  ===================================================== */
+
+  const navItems = document.querySelectorAll(".nav-item");
+  const pages = document.querySelectorAll(".page");
+
+  navItems.forEach(item => {
+
+    item.addEventListener("click", () => {
+
+      navItems.forEach(i => {
+        i.classList.remove("active");
+      });
+
+      item.classList.add("active");
+
+      const target = item.getAttribute("data-page");
+
+      pages.forEach(page => {
+        page.classList.remove("active");
+      });
+
+      document
+        .getElementById("page-" + target)
+        .classList.add("active");
+
+    });
+
+  });
+
+
+  /* =====================================================
+     ELEMENTS
+  ===================================================== */
+
+  const mathM1Range = document.getElementById("mathM1Range");
+  const mathM1Number = document.getElementById("mathM1Number");
+
+  const mathM2Range = document.getElementById("mathM2Range");
+  const mathM2Number = document.getElementById("mathM2Number");
+
+  const rwM1Range = document.getElementById("rwM1Range");
+  const rwM1Number = document.getElementById("rwM1Number");
+
+  const rwM2Range = document.getElementById("rwM2Range");
+  const rwM2Number = document.getElementById("rwM2Number");
+
+
+  /* =====================================================
+     SYNC INPUTS
+  ===================================================== */
+
+  function syncInput(range, number, label, value, max){
+
+    let val = Number(value);
+
+    if (!Number.isFinite(val)){
+      val = 0;
+    }
+
+    val = Math.max(0, Math.min(max, Math.round(val)));
+
+    range.value = val;
+    number.value = val;
+    label.textContent = val + " / " + max;
+
+    updateScores();
+  }
+
+
+  mathM1Range.addEventListener("input", e => {
+    syncInput(
+      mathM1Range,
+      mathM1Number,
+      document.getElementById("mathM1Label"),
+      e.target.value,
+      22
+    );
+  });
+
+
+  mathM1Number.addEventListener("input", e => {
+    syncInput(
+      mathM1Range,
+      mathM1Number,
+      document.getElementById("mathM1Label"),
+      e.target.value,
+      22
+    );
+  });
+
+
+  mathM2Range.addEventListener("input", e => {
+    syncInput(
+      mathM2Range,
+      mathM2Number,
+      document.getElementById("mathM2Label"),
+      e.target.value,
+      22
+    );
+  });
+
+
+  mathM2Number.addEventListener("input", e => {
+    syncInput(
+      mathM2Range,
+      mathM2Number,
+      document.getElementById("mathM2Label"),
+      e.target.value,
+      22
+    );
+  });
+
+
+  rwM1Range.addEventListener("input", e => {
+    syncInput(
+      rwM1Range,
+      rwM1Number,
+      document.getElementById("rwM1Label"),
+      e.target.value,
+      27
+    );
+  });
+
+
+  rwM1Number.addEventListener("input", e => {
+    syncInput(
+      rwM1Range,
+      rwM1Number,
+      document.getElementById("rwM1Label"),
+      e.target.value,
+      27
+    );
+  });
+
+
+  rwM2Range.addEventListener("input", e => {
+    syncInput(
+      rwM2Range,
+      rwM2Number,
+      document.getElementById("rwM2Label"),
+      e.target.value,
+      27
+    );
+  });
+
+
+  rwM2Number.addEventListener("input", e => {
+    syncInput(
+      rwM2Range,
+      rwM2Number,
+      document.getElementById("rwM2Label"),
+      e.target.value,
+      27
+    );
+  });
+
+
+  /* =====================================================
+     SCORE FUNCTION
+  ===================================================== */
+
+  function scoreFromPercent(percent){
+
+    /*
+      Approximate 200-800 scale.
+      Score changes continuously with every correct answer.
+    */
+
+    percent = Math.max(0, Math.min(100, percent));
+
+    let score = 200 + percent * 6;
+
+    score = Math.round(score / 10) * 10;
+
+    return Math.max(200, Math.min(800, score));
+  }
+
+
+  /* =====================================================
+     ADAPTIVE SCORE
+  ===================================================== */
+
+  function calculateSectionScore(
+    module1Correct,
+    module1Total,
+    module2Correct,
+    module2Total
+  ){
+
+    const m1Percent =
+      module1Correct / module1Total;
+
+    /*
+      Approximate adaptive routing.
+
+      Strong Module 1 -> harder Module 2.
+      Lower Module 1 -> easier Module 2.
+    */
+
+    const hardRoute = m1Percent >= 0.70;
+
+    let effectiveScore;
+
+
+    if (hardRoute){
+
+      /*
+        Hard second module.
+        Correct answers on M2 have slightly more
+        influence on the final estimate.
+      */
+
+      effectiveScore =
+        (module1Correct / module1Total) * 0.42 +
+        (module2Correct / module2Total) * 0.58;
+
+    }else{
+
+      /*
+        Easier second module.
+      */
+
+      effectiveScore =
+        (module1Correct / module1Total) * 0.58 +
+        (module2Correct / module2Total) * 0.42;
+
+    }
+
+
+    return {
+      score: scoreFromPercent(effectiveScore * 100),
+      hardRoute: hardRoute
+    };
+
+  }
+
+
+  /* =====================================================
+     UPDATE ALL SCORES
+  ===================================================== */
+
+  function updateScores(){
+
+    const mathM1 =
+      Number(mathM1Number.value) || 0;
+
+    const mathM2 =
+      Number(mathM2Number.value) || 0;
+
+    const rwM1 =
+      Number(rwM1Number.value) || 0;
+
+    const rwM2 =
+      Number(rwM2Number.value) || 0;
+
+
+    /* ---------- MATH ---------- */
+
+    const mathResult = calculateSectionScore(
+      mathM1,
+      22,
+      mathM2,
+      22
+    );
+
+
+    /* ---------- ENGLISH ---------- */
+
+    const rwResult = calculateSectionScore(
+      rwM1,
+      27,
+      rwM2,
+      27
+    );
+
+
+    /* ---------- DISPLAY ---------- */
+
+    document.getElementById("mathScore").textContent =
+      mathResult.score;
+
+    document.getElementById("rwScore").textContent =
+      rwResult.score;
+
+
+    const overall =
+      mathResult.score + rwResult.score;
+
+
+    document.getElementById("totalScore").textContent =
+      overall;
+
+
+    /* ---------- ROUTE INFO ---------- */
+
+    const mathBadge =
+      document.getElementById("mathRouteBadge");
+
+    const mathText =
+      document.getElementById("mathRouteText");
+
+
+    if(mathResult.hardRoute){
+
+      mathBadge.textContent = "Hard";
+      mathText.textContent =
+        "Module 2 → Hard";
+
+    }else{
+
+      mathBadge.textContent = "Standard";
+      mathText.textContent =
+        "Module 2 → Standard";
+
+    }
+
+
+    const rwBadge =
+      document.getElementById("rwRouteBadge");
+
+    const rwText =
+      document.getElementById("rwRouteText");
+
+
+    if(rwResult.hardRoute){
+
+      rwBadge.textContent = "Hard";
+      rwText.textContent =
+        "Module 2 → Hard";
+
+    }else{
+
+      rwBadge.textContent = "Standard";
+      rwText.textContent =
+        "Module 2 → Standard";
+
+    }
+
+  }
+
+
+  /* =====================================================
+     INITIAL CALCULATION
+  ===================================================== */
+
+  updateScores();
+
+</script>
+
+</body>
+</html>
