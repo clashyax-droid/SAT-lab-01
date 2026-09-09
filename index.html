@@ -3,10 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SATlab</title>
+<title>SATlab - Score Calculator</title>
 
 <style>
 :root{
+  /* ZUMRAD YASHIL RANGLAR */
+  --emerald-dark: #00A88E;
+  --emerald-light: #0DBA9C;
+  --emerald-bg: #E6F7F5;
+  
   --bg:#ffffff;
   --sidebar:#fbfbfc;
   --white:#ffffff;
@@ -72,6 +77,7 @@ body{
   font-weight:800;
   font-style:italic;
   letter-spacing:-.7px;
+  color: var(--emerald-dark);
 }
 
 .logo-mini{
@@ -79,19 +85,12 @@ body{
   font-size:21px;
   font-weight:800;
   font-style:italic;
+  color: var(--emerald-dark);
 }
 
-.sidebar.collapsed .logo-full{
-  display:none;
-}
-
-.sidebar.collapsed .logo-mini{
-  display:block;
-}
-
-.sidebar.collapsed .sidebar-header{
-  justify-content:center;
-}
+.sidebar.collapsed .logo-full{ display:none; }
+.sidebar.collapsed .logo-mini{ display:block; }
+.sidebar.collapsed .sidebar-header{ justify-content:center; }
 
 .toggle-btn{
   width:32px;
@@ -108,14 +107,11 @@ body{
 }
 
 .toggle-btn:hover{
-  background:#f0f1f3;
-  color:#111;
+  background:var(--emerald-bg);
+  color:var(--emerald-dark);
 }
 
-.toggle-btn svg{
-  width:17px;
-  height:17px;
-}
+.toggle-btn svg{ width:17px; height:17px; }
 
 .sidebar.collapsed .toggle-btn{
   position:absolute;
@@ -135,9 +131,7 @@ body{
   margin-bottom:10px;
 }
 
-.sidebar.collapsed .menu-label{
-  display:none;
-}
+.sidebar.collapsed .menu-label{ display:none; }
 
 .nav{
   display:flex;
@@ -159,31 +153,23 @@ body{
   font-weight:600;
   cursor:pointer;
   text-align:left;
+  transition: .2s;
 }
 
 .nav-item:hover{
-  background:#eef0f2;
+  background:var(--emerald-bg);
+  color: var(--emerald-dark);
 }
 
+/* Faol menyu endi YASHIL rangda */
 .nav-item.active{
-  background:#0b0d12;
+  background: var(--emerald-dark);
   color:white;
 }
 
-.nav-item svg{
-  width:19px;
-  height:19px;
-  flex-shrink:0;
-}
-
-.sidebar.collapsed .nav-item{
-  justify-content:center;
-  padding:12px;
-}
-
-.sidebar.collapsed .nav-text{
-  display:none;
-}
+.nav-item svg{ width:19px; height:19px; flex-shrink:0; }
+.sidebar.collapsed .nav-item{ justify-content:center; padding:12px; }
+.sidebar.collapsed .nav-text{ display:none; }
 
 
 /* =========================================================
@@ -202,17 +188,8 @@ body{
   overflow:hidden;
 }
 
-.sidebar.collapsed .sidebar-footer{
-  padding-left:0;
-  padding-right:0;
-  font-size:0;
-}
-
-.sidebar.collapsed .sidebar-footer::after{
-  content:"Y";
-  font-size:12px;
-  font-weight:800;
-}
+.sidebar.collapsed .sidebar-footer{ padding-left:0; padding-right:0; font-size:0; }
+.sidebar.collapsed .sidebar-footer::after{ content:"Y"; font-size:12px; font-weight:800; }
 
 
 /* =========================================================
@@ -226,13 +203,8 @@ body{
   background:#fff;
 }
 
-.page{
-  display:none;
-}
-
-.page.active{
-  display:block;
-}
+.page{ display:none; }
+.page.active{ display:block; }
 
 .page-title{
   margin:0;
@@ -284,10 +256,11 @@ body{
 }
 
 .live{
-  background:#f1f2f4;
+  background:var(--emerald-bg);
+  border: 1px solid var(--emerald-light);
   border-radius:30px;
   padding:8px 13px;
-  color:#71767f;
+  color: var(--emerald-dark);
   font-size:9px;
   font-weight:800;
   letter-spacing:.1em;
@@ -305,9 +278,7 @@ body{
   margin-top:25px;
 }
 
-.sections{
-  min-width:0;
-}
+.sections{ min-width:0; }
 
 
 /* =========================================================
@@ -325,6 +296,7 @@ body{
   margin:0;
   font-size:14px;
   font-weight:800;
+  color: var(--emerald-dark);
 }
 
 .score-section-title span{
@@ -354,7 +326,7 @@ body{
 }
 
 .module:hover{
-  border-color:#bfc3c9;
+  border-color: var(--emerald-light);
   box-shadow:0 8px 24px rgba(0,0,0,.045);
   transform:translateY(-2px);
 }
@@ -375,8 +347,8 @@ body{
 .module-badge{
   padding:6px 9px;
   border-radius:8px;
-  background:#f2f3f4;
-  color:#777c85;
+  background:var(--emerald-bg);
+  color: var(--emerald-dark);
   font-size:9px;
   font-weight:800;
   letter-spacing:.06em;
@@ -387,9 +359,7 @@ body{
    COUNTER
 ========================================================= */
 
-.counter-area{
-  margin-top:22px;
-}
+.counter-area{ margin-top:22px; }
 
 .counter-row{
   display:flex;
@@ -415,9 +385,9 @@ body{
 }
 
 .counter-btn:hover{
-  background:#f4f5f6;
-  color:#111;
-  border-color:#c9ccd1;
+  background:var(--emerald-bg);
+  color: var(--emerald-dark);
+  border-color: var(--emerald-light);
 }
 
 .counter-number{
@@ -439,12 +409,10 @@ body{
 
 
 /* =========================================================
-   SLIDER
+   SLIDER (YASHIL RANGLAR)
 ========================================================= */
 
-.slider-area{
-  margin-top:25px;
-}
+.slider-area{ margin-top:25px; }
 
 .slider-label{
   display:flex;
@@ -456,9 +424,7 @@ body{
   font-weight:700;
 }
 
-.slider-label strong{
-  color:#727780;
-}
+.slider-label strong{ color:#727780; }
 
 .slider-row{
   display:flex;
@@ -466,8 +432,7 @@ body{
   gap:9px;
 }
 
-.slider-minus,
-.slider-plus{
+.slider-minus, .slider-plus{
   color:#9da1a8;
   font-size:14px;
   font-weight:700;
@@ -492,6 +457,7 @@ input[type="range"]::-webkit-slider-runnable-track{
   border-radius:20px;
 }
 
+/* Slayder tugmasi zumrad yashil */
 input[type="range"]::-webkit-slider-thumb{
   appearance:none;
   -webkit-appearance:none;
@@ -499,7 +465,7 @@ input[type="range"]::-webkit-slider-thumb{
   height:17px;
   margin-top:-6.5px;
   border-radius:50%;
-  background:#0b0d12;
+  background: var(--emerald-light);
   border:3px solid #fff;
   box-shadow:0 1px 5px rgba(0,0,0,.25);
 }
@@ -514,7 +480,7 @@ input[type="range"]::-moz-range-thumb{
   width:17px;
   height:17px;
   border-radius:50%;
-  background:#0b0d12;
+  background: var(--emerald-light);
   border:3px solid #fff;
   box-shadow:0 1px 5px rgba(0,0,0,.25);
 }
@@ -524,13 +490,11 @@ input[type="range"]::-moz-range-thumb{
    SECOND SECTION
 ========================================================= */
 
-.rw-section{
-  margin-top:25px;
-}
+.rw-section{ margin-top:25px; }
 
 
 /* =========================================================
-   OVERALL CARD
+   OVERALL CARD (YASHIL FON)
 ========================================================= */
 
 .overall-card{
@@ -538,18 +502,15 @@ input[type="range"]::-moz-range-thumb{
   min-height:560px;
   border:1px solid #dfe1e5;
   border-radius:22px;
-  background:#f5f6f7;
+  background: var(--emerald-bg); /* Zumrad yashil fon */
   padding:25px;
   overflow:hidden;
 }
 
-.overall-header{
-  position:relative;
-  z-index:4;
-}
+.overall-header{ position:relative; z-index:4; }
 
 .overall-label{
-  color:#989da5;
+  color: var(--emerald-dark);
   font-size:10px;
   font-weight:800;
   letter-spacing:.1em;
@@ -566,7 +527,7 @@ input[type="range"]::-moz-range-thumb{
   position:relative;
   z-index:4;
   margin-top:14px;
-  background:#eaf4fb;
+  background:#fff;
   border:1px solid #dcebf5;
   border-radius:14px;
   padding:14px 16px;
@@ -586,7 +547,7 @@ input[type="range"]::-moz-range-thumb{
   position:relative;
   z-index:4;
   margin-top:22px;
-  color:#686d76;
+  color: #B8860B; /* Oltin rang */
   font-size:64px;
   line-height:1;
   font-weight:850;
@@ -606,7 +567,7 @@ input[type="range"]::-moz-range-thumb{
 
 
 /* =========================================================
-   SECTION SCORES
+   SECTION SCORES (OQ KATAKCHALAR)
 ========================================================= */
 
 .section-scores{
@@ -636,14 +597,14 @@ input[type="range"]::-moz-range-thumb{
 }
 
 .section-score-value{
-  color:#70757e;
+  color: var(--emerald-dark);
   font-size:20px;
   font-weight:800;
 }
 
 
 /* =========================================================
-   CHILD
+   CHILD (BOLA RASMI)
 ========================================================= */
 
 .child-area{
@@ -659,153 +620,17 @@ input[type="range"]::-moz-range-thumb{
   justify-content:center;
 }
 
-.child{
-  position:relative;
-  width:105px;
-  height:125px;
+/* Eski CSS chizilgan bola o'rniga rasm uchun yangi klass */
+.child-img {
+  width: 100px;
+  height: 110px;
+  object-fit: contain;
+  border-radius: 10px;
 }
 
-/* head */
-.child-head{
-  position:absolute;
-  width:62px;
-  height:68px;
-  left:22px;
-  top:4px;
-  background:#f2c49f;
-  border-radius:48% 48% 45% 45%;
-  border:2px solid #d9a67c;
-}
-
-/* hair */
-.child-hair{
-  position:absolute;
-  width:65px;
-  height:38px;
-  left:20px;
-  top:0;
-  background:#25272b;
-  border-radius:50px 50px 18px 18px;
-  z-index:2;
-}
-
-.child-hair:after{
-  content:"";
-  position:absolute;
-  width:22px;
-  height:25px;
-  left:-3px;
-  top:16px;
-  background:#25272b;
-  border-radius:0 0 15px 15px;
-}
-
-/* eyes */
-.eye{
-  position:absolute;
-  top:32px;
-  width:7px;
-  height:7px;
-  background:#303238;
-  border-radius:50%;
-  z-index:4;
-}
-
-.eye.left{
-  left:16px;
-}
-
-.eye.right{
-  right:16px;
-}
-
-/* nose */
-.nose{
-  position:absolute;
-  left:29px;
-  top:39px;
-  width:5px;
-  height:7px;
-  border-left:1px solid #c48f69;
-  border-bottom:1px solid #c48f69;
-  transform:rotate(-10deg);
-  z-index:4;
-}
-
-/* mouth */
-.mouth{
-  position:absolute;
-  left:22px;
-  top:51px;
-  width:18px;
-  height:8px;
-  border-bottom:3px solid #9b4e50;
-  border-radius:0 0 50% 50%;
-  z-index:4;
-}
-
-.child-body{
-  position:absolute;
-  width:86px;
-  height:57px;
-  left:10px;
-  bottom:0;
-  background:#e1e4e7;
-  border-radius:45px 45px 10px 10px;
-}
-
-.child-body:before{
-  content:"";
-  position:absolute;
-  width:23px;
-  height:48px;
-  left:-8px;
-  top:7px;
-  background:#e1e4e7;
-  border-radius:20px;
-  transform:rotate(20deg);
-}
-
-.child-body:after{
-  content:"";
-  position:absolute;
-  width:23px;
-  height:48px;
-  right:-8px;
-  top:7px;
-  background:#e1e4e7;
-  border-radius:20px;
-  transform:rotate(-20deg);
-}
-
-
-/* =========================================================
-   HAPPY STATES
-========================================================= */
-
-.child.happy .mouth{
-  width:22px;
-  left:20px;
-  top:49px;
-  height:12px;
-  border-bottom:4px solid #a24d50;
-  border-radius:0 0 50% 50%;
-}
-
-.child.excited .mouth{
-  width:24px;
-  height:17px;
-  left:19px;
-  top:47px;
-  background:#9b4e50;
-  border:0;
-  border-radius:50%;
-}
-
-.child.excited .eye{
-  height:9px;
-  width:9px;
-}
+/* Eski CSS chizilgan bola elementlari (endi ko'rinmaydi, lekin JSga zarar bermasligi uchun qoldirildi) */
+.child { display: none; }
+.child-head, .child-hair, .eye, .nose, .mouth, .child-body { display: none; }
 
 
 /* =========================================================
@@ -821,9 +646,7 @@ input[type="range"]::-moz-range-thumb{
   transition:opacity .5s ease;
 }
 
-.overall-card.dice-on .dice-background{
-  opacity:1;
-}
+.overall-card.dice-on .dice-background{ opacity:1; }
 
 .die{
   position:absolute;
@@ -841,50 +664,21 @@ input[type="range"]::-moz-range-thumb{
   width:6px;
   height:6px;
   border-radius:50%;
-  background:#9da1a8;
+  background: var(--emerald-light);
   top:7px;
   left:7px;
   box-shadow:
-    14px 0 #9da1a8,
-    0 14px #9da1a8,
-    14px 14px #9da1a8;
+    14px 0 var(--emerald-light),
+    0 14px var(--emerald-light),
+    14px 14px var(--emerald-light);
 }
 
-.die.one{
-  top:110px;
-  left:18px;
-  transform:rotate(-13deg);
-}
-
-.die.two{
-  top:185px;
-  right:22px;
-  transform:rotate(14deg);
-}
-
-.die.three{
-  bottom:150px;
-  left:20px;
-  transform:rotate(8deg);
-}
-
-.die.four{
-  bottom:80px;
-  right:25px;
-  transform:rotate(-12deg);
-}
-
-.die.five{
-  top:75px;
-  right:100px;
-  transform:rotate(18deg) scale(.8);
-}
-
-.die.six{
-  bottom:195px;
-  right:60px;
-  transform:rotate(-20deg) scale(.75);
-}
+.die.one{ top:110px; left:18px; transform:rotate(-13deg); }
+.die.two{ top:185px; right:22px; transform:rotate(14deg); }
+.die.three{ bottom:150px; left:20px; transform:rotate(8deg); }
+.die.four{ bottom:80px; right:25px; transform:rotate(-12deg); }
+.die.five{ top:75px; right:100px; transform:rotate(18deg) scale(.8); }
+.die.six{ bottom:195px; right:60px; transform:rotate(-20deg) scale(.75); }
 
 
 /* =========================================================
@@ -895,15 +689,13 @@ input[type="range"]::-moz-range-thumb{
   margin-top:14px;
   border-radius:12px;
   padding:13px 15px;
-  background:#f5f6f7;
-  color:#858a93;
+  background:var(--emerald-bg);
+  color: var(--emerald-dark);
   font-size:11px;
   line-height:1.5;
 }
 
-.adaptive-info strong{
-  color:#171a20;
-}
+.adaptive-info strong{ color: #171a20; }
 
 .disclaimer{
   margin:14px 0 0;
@@ -914,7 +706,7 @@ input[type="range"]::-moz-range-thumb{
 
 
 /* =========================================================
-   PRACTICE
+   PRACTICE (YANGI TUGMA)
 ========================================================= */
 
 .empty-state{
@@ -926,102 +718,58 @@ input[type="range"]::-moz-range-thumb{
   color:var(--muted);
 }
 
+/* Yangi yashil tugma */
+.cta-btn {
+  position: relative;
+  z-index: 4;
+  background-color: var(--emerald-light);
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 20px;
+  transition: .2s;
+}
+
+.cta-btn:hover {
+  background-color: var(--emerald-dark);
+}
+
 
 /* =========================================================
    MOBILE
 ========================================================= */
 
 @media(max-width:1000px){
-
-  .calculator-layout{
-    grid-template-columns:1fr;
-  }
-
-  .overall-card{
-    min-height:500px;
-  }
-
+  .calculator-layout{ grid-template-columns:1fr; }
+  .overall-card{ min-height:500px; }
 }
 
 @media(max-width:760px){
-
-  .sidebar{
-    width:76px;
-    padding:20px 10px;
-  }
-
-  .sidebar .logo-full{
-    display:none;
-  }
-
-  .sidebar .logo-mini{
-    display:block;
-  }
-
-  .sidebar .sidebar-header{
-    justify-content:center;
-  }
-
-  .sidebar .menu-label{
-    display:none;
-  }
-
-  .sidebar .nav-item{
-    justify-content:center;
-    padding:12px;
-  }
-
-  .sidebar .nav-text{
-    display:none;
-  }
-
-  .sidebar .toggle-btn{
-    position:absolute;
-    right:-16px;
-    top:20px;
-  }
-
-  .content{
-    padding:26px 18px;
-  }
-
-  .calculator{
-    padding:20px;
-  }
-
-  .calculator-header{
-    flex-direction:column;
-    align-items:flex-start;
-  }
-
-  .modules{
-    grid-template-columns:1fr;
-  }
-
+  .sidebar{ width:76px; padding:20px 10px; }
+  .sidebar .logo-full{ display:none; }
+  .sidebar .logo-mini{ display:block; }
+  .sidebar .sidebar-header{ justify-content:center; }
+  .sidebar .menu-label{ display:none; }
+  .sidebar .nav-item{ justify-content:center; padding:12px; }
+  .sidebar .nav-text{ display:none; }
+  .sidebar .toggle-btn{ position:absolute; right:-16px; top:20px; }
+  .content{ padding:26px 18px; }
+  .calculator{ padding:20px; }
+  .calculator-header{ flex-direction:column; align-items:flex-start; }
+  .modules{ grid-template-columns:1fr; }
 }
 
 @media(max-width:500px){
-
-  .content{
-    padding:20px 12px;
-  }
-
-  .page-title{
-    font-size:24px;
-  }
-
-  .calculator-title{
-    font-size:21px;
-  }
-
-  .module{
-    min-height:220px;
-  }
-
-  .overall-number{
-    font-size:54px;
-  }
-
+  .content{ padding:20px 12px; }
+  .page-title{ font-size:24px; }
+  .calculator-title{ font-size:21px; }
+  .module{ min-height:220px; }
+  .overall-number{ font-size:54px; }
 }
 </style>
 </head>
@@ -1040,119 +788,39 @@ input[type="range"]::-moz-range-thumb{
 
   <div class="sidebar-header">
 
-    <span class="logo-full">
-      SATlab
-    </span>
+    <span class="logo-full">SATlab</span>
+    <span class="logo-mini">S</span>
 
-    <span class="logo-mini">
-      S
-    </span>
-
-    <button
-      class="toggle-btn"
-      id="toggleBtn"
-      title="Sidebar"
-    >
-
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-
-        <rect
-          x="3"
-          y="4"
-          width="18"
-          height="16"
-          rx="2"
-        />
-
-        <line
-          x1="9"
-          y1="4"
-          x2="9"
-          y2="20"
-        />
-
+    <button class="toggle-btn" id="toggleBtn" title="Sidebar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="4" width="18" height="16" rx="2"/>
+        <line x1="9" y1="4" x2="9" y2="20"/>
       </svg>
-
     </button>
 
   </div>
 
 
-  <div class="menu-label">
-    MENU
-  </div>
+  <div class="menu-label">MENU</div>
 
 
   <nav class="nav">
 
-    <button
-      class="nav-item active"
-      data-page="home"
-    >
-
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-
+    <button class="nav-item active" data-page="home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M3 9.5L12 3l9 6.5"/>
-
         <path d="M5 10v9a1 1 0 0 0 1 1h3v-6h6v6h3a1 1 0 0 0 1-1v-9"/>
-
       </svg>
-
-      <span class="nav-text">
-        Home
-      </span>
-
+      <span class="nav-text">Home</span>
     </button>
 
 
-    <button
-      class="nav-item"
-      data-page="practice"
-    >
-
-      <svg
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-
-        <rect
-          x="3"
-          y="7"
-          width="18"
-          height="10"
-          rx="2"
-          transform="rotate(-15 12 12)"
-        />
-
-        <path
-          d="M8 9l1 2M12 8l1 2M16 7l1 2"
-          transform="rotate(-15 12 12)"
-        />
-
+    <button class="nav-item" data-page="practice">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="7" width="18" height="10" rx="2" transform="rotate(-15 12 12)"/>
+        <path d="M8 9l1 2M12 8l1 2M16 7l1 2" transform="rotate(-15 12 12)"/>
       </svg>
-
-      <span class="nav-text">
-        Practice
-      </span>
-
+      <span class="nav-text">Practice</span>
     </button>
 
   </nav>
@@ -1177,18 +845,10 @@ input[type="range"]::-moz-range-thumb{
      HOME
 ======================================================= -->
 
-<section
-  class="page active"
-  id="page-home"
->
+<section class="page active" id="page-home">
 
-  <h1 class="page-title">
-    Home
-  </h1>
-
-  <p class="page-subtitle">
-    SAT natijangizni tez va oson hisoblang
-  </p>
+  <h1 class="page-title">Home</h1>
+  <p class="page-subtitle">SAT natijangizni tez va oson hisoblang</p>
 
 
 
@@ -1200,21 +860,11 @@ input[type="range"]::-moz-range-thumb{
     <div class="calculator-header">
 
       <div>
-
-        <h2 class="calculator-title">
-          SAT Score Calculator
-        </h2>
-
-        <p class="calculator-description">
-          Module'lardagi to‘g‘ri javoblar sonini tanlang.
-          Score avtomatik hisoblanadi.
-        </p>
-
+        <h2 class="calculator-title">SAT Score Calculator</h2>
+        <p class="calculator-description">Module'lardagi to‘g‘ri javoblar sonini tanlang. Score avtomatik hisoblanadi.</p>
       </div>
 
-      <div class="live">
-        LIVE SCORE
-      </div>
+      <div class="live">LIVE SCORE</div>
 
     </div>
 
@@ -1237,15 +887,8 @@ input[type="range"]::-moz-range-thumb{
         ================================================= -->
 
         <div class="score-section-title">
-
-          <h3>
-            Reading & Writing
-          </h3>
-
-          <span>
-            54 questions
-          </span>
-
+          <h3>Reading & Writing</h3>
+          <span>54 questions</span>
         </div>
 
 
@@ -1257,90 +900,34 @@ input[type="range"]::-moz-range-thumb{
           <div class="module">
 
             <div class="module-header">
-
-              <div class="module-title">
-                MODULE 1
-              </div>
-
-              <div class="module-badge">
-                27 QUESTIONS
-              </div>
-
+              <div class="module-title">MODULE 1</div>
+              <div class="module-badge">27 QUESTIONS</div>
             </div>
 
 
             <div class="counter-area">
-
               <div class="counter-row">
-
-                <button
-                  class="counter-btn"
-                  data-target="rwM1"
-                  data-change="-1"
-                >
-                  −
-                </button>
-
+                <button class="counter-btn" data-target="rwM1" data-change="-1">−</button>
                 <div class="counter-number">
-
-                  <span id="rwM1Big">
-                    14
-                  </span>
-
-                  <small>
-                    / 27
-                  </small>
-
+                  <span id="rwM1Big">14</span>
+                  <small>/ 27</small>
                 </div>
-
-                <button
-                  class="counter-btn"
-                  data-target="rwM1"
-                  data-change="1"
-                >
-                  +
-                </button>
-
+                <button class="counter-btn" data-target="rwM1" data-change="1">+</button>
               </div>
-
             </div>
 
 
             <div class="slider-area">
-
               <div class="slider-label">
-
-                <span>
-                  Correct answers
-                </span>
-
-                <strong id="rwM1Label">
-                  14 / 27
-                </strong>
-
+                <span>Correct answers</span>
+                <strong id="rwM1Label">14 / 27</strong>
               </div>
-
 
               <div class="slider-row">
-
-                <span class="slider-minus">
-                  −
-                </span>
-
-                <input
-                  type="range"
-                  id="rwM1Range"
-                  min="0"
-                  max="27"
-                  value="14"
-                >
-
-                <span class="slider-plus">
-                  +
-                </span>
-
+                <span class="slider-minus">−</span>
+                <input type="range" id="rwM1Range" min="0" max="27" value="14">
+                <span class="slider-plus">+</span>
               </div>
-
             </div>
 
           </div>
@@ -1352,93 +939,34 @@ input[type="range"]::-moz-range-thumb{
           <div class="module">
 
             <div class="module-header">
-
-              <div class="module-title">
-                MODULE 2
-              </div>
-
-              <div
-                class="module-badge"
-                id="rwRouteBadge"
-              >
-                ADAPTIVE
-              </div>
-
+              <div class="module-title">MODULE 2</div>
+              <div class="module-badge" id="rwRouteBadge">ADAPTIVE</div>
             </div>
 
 
             <div class="counter-area">
-
               <div class="counter-row">
-
-                <button
-                  class="counter-btn"
-                  data-target="rwM2"
-                  data-change="-1"
-                >
-                  −
-                </button>
-
+                <button class="counter-btn" data-target="rwM2" data-change="-1">−</button>
                 <div class="counter-number">
-
-                  <span id="rwM2Big">
-                    14
-                  </span>
-
-                  <small>
-                    / 27
-                  </small>
-
+                  <span id="rwM2Big">14</span>
+                  <small>/ 27</small>
                 </div>
-
-                <button
-                  class="counter-btn"
-                  data-target="rwM2"
-                  data-change="1"
-                >
-                  +
-                </button>
-
+                <button class="counter-btn" data-target="rwM2" data-change="1">+</button>
               </div>
-
             </div>
 
 
             <div class="slider-area">
-
               <div class="slider-label">
-
-                <span>
-                  Correct answers
-                </span>
-
-                <strong id="rwM2Label">
-                  14 / 27
-                </strong>
-
+                <span>Correct answers</span>
+                <strong id="rwM2Label">14 / 27</strong>
               </div>
-
 
               <div class="slider-row">
-
-                <span class="slider-minus">
-                  −
-                </span>
-
-                <input
-                  type="range"
-                  id="rwM2Range"
-                  min="0"
-                  max="27"
-                  value="14"
-                >
-
-                <span class="slider-plus">
-                  +
-                </span>
-
+                <span class="slider-minus">−</span>
+                <input type="range" id="rwM2Range" min="0" max="27" value="14">
+                <span class="slider-plus">+</span>
               </div>
-
             </div>
 
           </div>
@@ -1454,15 +982,8 @@ input[type="range"]::-moz-range-thumb{
         <div class="rw-section">
 
           <div class="score-section-title">
-
-            <h3>
-              Math
-            </h3>
-
-            <span>
-              44 questions
-            </span>
-
+            <h3>Math</h3>
+            <span>44 questions</span>
           </div>
 
 
@@ -1474,90 +995,34 @@ input[type="range"]::-moz-range-thumb{
             <div class="module">
 
               <div class="module-header">
-
-                <div class="module-title">
-                  MODULE 1
-                </div>
-
-                <div class="module-badge">
-                  22 QUESTIONS
-                </div>
-
+                <div class="module-title">MODULE 1</div>
+                <div class="module-badge">22 QUESTIONS</div>
               </div>
 
 
               <div class="counter-area">
-
                 <div class="counter-row">
-
-                  <button
-                    class="counter-btn"
-                    data-target="mathM1"
-                    data-change="-1"
-                  >
-                    −
-                  </button>
-
+                  <button class="counter-btn" data-target="mathM1" data-change="-1">−</button>
                   <div class="counter-number">
-
-                    <span id="mathM1Big">
-                      11
-                    </span>
-
-                    <small>
-                      / 22
-                    </small>
-
+                    <span id="mathM1Big">11</span>
+                    <small>/ 22</small>
                   </div>
-
-                  <button
-                    class="counter-btn"
-                    data-target="mathM1"
-                    data-change="1"
-                  >
-                    +
-                  </button>
-
+                  <button class="counter-btn" data-target="mathM1" data-change="1">+</button>
                 </div>
-
               </div>
 
 
               <div class="slider-area">
-
                 <div class="slider-label">
-
-                  <span>
-                    Correct answers
-                  </span>
-
-                  <strong id="mathM1Label">
-                    11 / 22
-                  </strong>
-
+                  <span>Correct answers</span>
+                  <strong id="mathM1Label">11 / 22</strong>
                 </div>
-
 
                 <div class="slider-row">
-
-                  <span class="slider-minus">
-                    −
-                  </span>
-
-                  <input
-                    type="range"
-                    id="mathM1Range"
-                    min="0"
-                    max="22"
-                    value="11"
-                  >
-
-                  <span class="slider-plus">
-                    +
-                  </span>
-
+                  <span class="slider-minus">−</span>
+                  <input type="range" id="mathM1Range" min="0" max="22" value="11">
+                  <span class="slider-plus">+</span>
                 </div>
-
               </div>
 
             </div>
@@ -1569,93 +1034,34 @@ input[type="range"]::-moz-range-thumb{
             <div class="module">
 
               <div class="module-header">
-
-                <div class="module-title">
-                  MODULE 2
-                </div>
-
-                <div
-                  class="module-badge"
-                  id="mathRouteBadge"
-                >
-                  ADAPTIVE
-                </div>
-
+                <div class="module-title">MODULE 2</div>
+                <div class="module-badge" id="mathRouteBadge">ADAPTIVE</div>
               </div>
 
 
               <div class="counter-area">
-
                 <div class="counter-row">
-
-                  <button
-                    class="counter-btn"
-                    data-target="mathM2"
-                    data-change="-1"
-                  >
-                    −
-                  </button>
-
+                  <button class="counter-btn" data-target="mathM2" data-change="-1">−</button>
                   <div class="counter-number">
-
-                    <span id="mathM2Big">
-                      11
-                    </span>
-
-                    <small>
-                      / 22
-                    </small>
-
+                    <span id="mathM2Big">11</span>
+                    <small>/ 22</small>
                   </div>
-
-                  <button
-                    class="counter-btn"
-                    data-target="mathM2"
-                    data-change="1"
-                  >
-                    +
-                  </button>
-
+                  <button class="counter-btn" data-target="mathM2" data-change="1">+</button>
                 </div>
-
               </div>
 
 
               <div class="slider-area">
-
                 <div class="slider-label">
-
-                  <span>
-                    Correct answers
-                  </span>
-
-                  <strong id="mathM2Label">
-                    11 / 22
-                  </strong>
-
+                  <span>Correct answers</span>
+                  <strong id="mathM2Label">11 / 22</strong>
                 </div>
-
 
                 <div class="slider-row">
-
-                  <span class="slider-minus">
-                    −
-                  </span>
-
-                  <input
-                    type="range"
-                    id="mathM2Range"
-                    min="0"
-                    max="22"
-                    value="11"
-                  >
-
-                  <span class="slider-plus">
-                    +
-                  </span>
-
+                  <span class="slider-minus">−</span>
+                  <input type="range" id="mathM2Range" min="0" max="22" value="11">
+                  <span class="slider-plus">+</span>
                 </div>
-
               </div>
 
             </div>
@@ -1670,31 +1076,21 @@ input[type="range"]::-moz-range-thumb{
 
         <div class="adaptive-info">
 
-          <strong>
-            Adaptive path:
-          </strong>
+          <strong>Adaptive path:</strong>
 
           Math:
-          <span id="mathRouteText">
-            Module 2 → Standard
-          </span>
+          <span id="mathRouteText">Module 2 → Standard</span>
 
           &nbsp; · &nbsp;
 
           Reading & Writing:
-          <span id="rwRouteText">
-            Module 2 → Standard
-          </span>
+          <span id="rwRouteText">Module 2 → Standard</span>
 
         </div>
 
 
         <p class="disclaimer">
-
-          * Bu taxminiy score estimator.
-          Digital SAT adaptive scoring tizimida savollarning
-          qiyinligi ham hisobga olinadi.
-
+          * Bu taxminiy score estimator. Digital SAT adaptive scoring tizimida savollarning qiyinligi ham hisobga olinadi.
         </p>
 
       </div>
@@ -1711,59 +1107,37 @@ input[type="range"]::-moz-range-thumb{
         <!-- DICE BACKGROUND -->
 
         <div class="dice-background">
-
           <div class="die one"></div>
           <div class="die two"></div>
           <div class="die three"></div>
           <div class="die four"></div>
           <div class="die five"></div>
           <div class="die six"></div>
-
         </div>
 
 
         <!-- HEADER -->
 
         <div class="overall-header">
-
-          <div class="overall-label">
-            SAT SCORE
-          </div>
-
-          <div class="overall-title">
-            Overall Performance
-          </div>
-
+          <div class="overall-label">SAT SCORE</div>
+          <div class="overall-title">Overall Performance</div>
         </div>
 
 
         <!-- PREDICTED -->
 
         <div class="predicted">
-
           Predicted Overall Score
-
-          <strong>
-            Your estimated Digital SAT score
-          </strong>
-
+          <strong>Your estimated Digital SAT score</strong>
         </div>
 
 
         <!-- NUMBER -->
 
-        <div
-          class="overall-number"
-          id="totalScore"
-        >
-          800
-        </div>
+        <div class="overall-number" id="totalScore">800</div>
 
 
-        <div
-          class="score-message"
-          id="scoreMessage"
-        >
+        <div class="score-message" id="scoreMessage">
           Keep practicing — you can improve.
         </div>
 
@@ -1774,67 +1148,29 @@ input[type="range"]::-moz-range-thumb{
         <div class="section-scores">
 
           <div class="section-score">
-
-            <div class="section-score-label">
-              READING & WRITING
-            </div>
-
-            <div
-              class="section-score-value"
-              id="rwScore"
-            >
-              400
-            </div>
-
+            <div class="section-score-label">READING & WRITING</div>
+            <div class="section-score-value" id="rwScore">400</div>
           </div>
 
 
           <div class="section-score">
-
-            <div class="section-score-label">
-              MATH
-            </div>
-
-            <div
-              class="section-score-value"
-              id="mathScore"
-            >
-              400
-            </div>
-
+            <div class="section-score-label">MATH</div>
+            <div class="section-score-value" id="mathScore">400</div>
           </div>
 
         </div>
 
 
 
-        <!-- CHILD -->
+        <!-- CHILD (RASM) -->
 
         <div class="child-area">
-
-          <div
-            class="child"
-            id="child"
-          >
-
-            <div class="child-hair"></div>
-
-            <div class="child-head">
-
-              <div class="eye left"></div>
-              <div class="eye right"></div>
-
-              <div class="nose"></div>
-
-              <div class="mouth"></div>
-
-            </div>
-
-            <div class="child-body"></div>
-
-          </div>
-
+          <!-- Bu yerga o'z rasmingizni qo'yishingiz mumkin. Hozircha internetdagi 3D bola rasmi turadi -->
+          <img class="child-img" src="https://img.freepik.com/premium-photo/3d-cartoon-character-boy-school-uniform_890746-18770.jpg?w=360" alt="Bola rasmi">
         </div>
+
+        <!-- YANGI TUGMA -->
+        <button class="cta-btn">Practice on Platform</button>
 
       </div>
 
@@ -1850,18 +1186,10 @@ input[type="range"]::-moz-range-thumb{
      PRACTICE
 ======================================================= -->
 
-<section
-  class="page"
-  id="page-practice"
->
+<section class="page" id="page-practice">
 
-  <h1 class="page-title">
-    Practice
-  </h1>
-
-  <p class="page-subtitle">
-    Mashqlar bo‘limi
-  </p>
+  <h1 class="page-title">Practice</h1>
+  <p class="page-subtitle">Mashqlar bo‘limi</p>
 
   <div class="empty-state">
     Practice bo‘limi tez orada qo‘shiladi
@@ -1882,16 +1210,11 @@ input[type="range"]::-moz-range-thumb{
    SIDEBAR
 ========================================================= */
 
-const sidebar =
-  document.getElementById("sidebar");
-
-const toggleBtn =
-  document.getElementById("toggleBtn");
+const sidebar = document.getElementById("sidebar");
+const toggleBtn = document.getElementById("toggleBtn");
 
 toggleBtn.addEventListener("click", () => {
-
   sidebar.classList.toggle("collapsed");
-
 });
 
 
@@ -1900,35 +1223,19 @@ toggleBtn.addEventListener("click", () => {
    NAVIGATION
 ========================================================= */
 
-const navItems =
-  document.querySelectorAll(".nav-item");
-
-const pages =
-  document.querySelectorAll(".page");
+const navItems = document.querySelectorAll(".nav-item");
+const pages = document.querySelectorAll(".page");
 
 navItems.forEach(item => {
-
   item.addEventListener("click", () => {
-
-    navItems.forEach(i => {
-      i.classList.remove("active");
-    });
-
+    navItems.forEach(i => i.classList.remove("active"));
     item.classList.add("active");
 
-    const target =
-      item.getAttribute("data-page");
+    const target = item.getAttribute("data-page");
 
-    pages.forEach(page => {
-      page.classList.remove("active");
-    });
-
-    document
-      .getElementById("page-" + target)
-      .classList.add("active");
-
+    pages.forEach(page => page.classList.remove("active"));
+    document.getElementById("page-" + target).classList.add("active");
   });
-
 });
 
 
@@ -1938,13 +1245,10 @@ navItems.forEach(item => {
 ========================================================= */
 
 const values = {
-
   rwM1:14,
   rwM2:14,
-
   mathM1:11,
   mathM2:11
-
 };
 
 
@@ -1954,19 +1258,10 @@ const values = {
 ========================================================= */
 
 const ranges = {
-
-  rwM1:
-    document.getElementById("rwM1Range"),
-
-  rwM2:
-    document.getElementById("rwM2Range"),
-
-  mathM1:
-    document.getElementById("mathM1Range"),
-
-  mathM2:
-    document.getElementById("mathM2Range")
-
+  rwM1: document.getElementById("rwM1Range"),
+  rwM2: document.getElementById("rwM2Range"),
+  mathM1: document.getElementById("mathM1Range"),
+  mathM2: document.getElementById("mathM2Range")
 };
 
 
@@ -1975,45 +1270,21 @@ const ranges = {
    COUNTER BUTTONS
 ========================================================= */
 
-document
-  .querySelectorAll(".counter-btn")
-  .forEach(button => {
+document.querySelectorAll(".counter-btn").forEach(button => {
+  button.addEventListener("click", () => {
+    const target = button.getAttribute("data-target");
+    const change = Number(button.getAttribute("data-change"));
 
-    button.addEventListener("click", () => {
+    let value = values[target] + change;
+    const max = target.startsWith("rw") ? 27 : 22;
 
-      const target =
-        button.getAttribute("data-target");
+    value = Math.max(0, Math.min(max, value));
+    values[target] = value;
 
-      const change =
-        Number(
-          button.getAttribute("data-change")
-        );
-
-      let value =
-        values[target] + change;
-
-      const max =
-        target.startsWith("rw")
-          ? 27
-          : 22;
-
-      value =
-        Math.max(
-          0,
-          Math.min(max,value)
-        );
-
-      values[target] =
-        value;
-
-      ranges[target].value =
-        value;
-
-      updateScores();
-
-    });
-
+    ranges[target].value = value;
+    updateScores();
   });
+});
 
 
 
@@ -2022,19 +1293,10 @@ document
 ========================================================= */
 
 Object.keys(ranges).forEach(key => {
-
-  ranges[key].addEventListener(
-    "input",
-    () => {
-
-      values[key] =
-        Number(ranges[key].value);
-
-      updateScores();
-
-    }
-  );
-
+  ranges[key].addEventListener("input", () => {
+    values[key] = Number(ranges[key].value);
+    updateScores();
+  });
 });
 
 
@@ -2043,63 +1305,23 @@ Object.keys(ranges).forEach(key => {
    SCORE CALCULATION
 ========================================================= */
 
-function calculateSection(
-  m1,
-  max1,
-  m2,
-  max2
-){
-
-  const firstPercentage =
-    m1 / max1;
-
-
-  /*
-    Approximate adaptive routing.
-  */
-
-  const hard =
-    firstPercentage >= 0.70;
-
+function calculateSection(m1, max1, m2, max2){
+  const firstPercentage = m1 / max1;
+  const hard = firstPercentage >= 0.70;
 
   let weighted;
 
-
   if(hard){
-
-    weighted =
-      (m1 / max1) * 0.42 +
-      (m2 / max2) * 0.58;
-
+    weighted = (m1 / max1) * 0.42 + (m2 / max2) * 0.58;
   }else{
-
-    weighted =
-      (m1 / max1) * 0.58 +
-      (m2 / max2) * 0.42;
-
+    weighted = (m1 / max1) * 0.58 + (m2 / max2) * 0.42;
   }
 
+  let score = 200 + weighted * 600;
+  score = Math.round(score / 10) * 10;
+  score = Math.max(200, Math.min(800, score));
 
-  let score =
-    200 + weighted * 600;
-
-
-  score =
-    Math.round(score / 10) * 10;
-
-
-  score =
-    Math.max(
-      200,
-      Math.min(800,score)
-    );
-
-
-  return {
-    score:score,
-    hard:hard
-  };
-
+  return { score: score, hard: hard };
 }
 
 
@@ -2109,233 +1331,93 @@ function calculateSection(
 ========================================================= */
 
 function updateScores(){
-
-  const rw1 =
-    values.rwM1;
-
-  const rw2 =
-    values.rwM2;
-
-  const math1 =
-    values.mathM1;
-
-  const math2 =
-    values.mathM2;
+  const rw1 = values.rwM1;
+  const rw2 = values.rwM2;
+  const math1 = values.mathM1;
+  const math2 = values.mathM2;
 
 
 
   /* ---------- RW NUMBERS ---------- */
-
-  document
-    .getElementById("rwM1Big")
-    .textContent =
-    rw1;
-
-  document
-    .getElementById("rwM2Big")
-    .textContent =
-    rw2;
-
-
-  document
-    .getElementById("rwM1Label")
-    .textContent =
-    rw1 + " / 27";
-
-  document
-    .getElementById("rwM2Label")
-    .textContent =
-    rw2 + " / 27";
+  document.getElementById("rwM1Big").textContent = rw1;
+  document.getElementById("rwM2Big").textContent = rw2;
+  document.getElementById("rwM1Label").textContent = rw1 + " / 27";
+  document.getElementById("rwM2Label").textContent = rw2 + " / 27";
 
 
 
   /* ---------- MATH NUMBERS ---------- */
-
-  document
-    .getElementById("mathM1Big")
-    .textContent =
-    math1;
-
-  document
-    .getElementById("mathM2Big")
-    .textContent =
-    math2;
-
-
-  document
-    .getElementById("mathM1Label")
-    .textContent =
-    math1 + " / 22";
-
-  document
-    .getElementById("mathM2Label")
-    .textContent =
-    math2 + " / 22";
+  document.getElementById("mathM1Big").textContent = math1;
+  document.getElementById("mathM2Big").textContent = math2;
+  document.getElementById("mathM1Label").textContent = math1 + " / 22";
+  document.getElementById("mathM2Label").textContent = math2 + " / 22";
 
 
 
   /* ---------- SCORE ---------- */
-
-  const rw =
-    calculateSection(
-      rw1,
-      27,
-      rw2,
-      27
-    );
-
-
-  const math =
-    calculateSection(
-      math1,
-      22,
-      math2,
-      22
-    );
-
-
-  const total =
-    rw.score + math.score;
+  const rw = calculateSection(rw1, 27, rw2, 27);
+  const math = calculateSection(math1, 22, math2, 22);
+  const total = rw.score + math.score;
 
 
 
   /* ---------- DISPLAY ---------- */
-
-  document
-    .getElementById("rwScore")
-    .textContent =
-    rw.score;
-
-
-  document
-    .getElementById("mathScore")
-    .textContent =
-    math.score;
-
-
-  document
-    .getElementById("totalScore")
-    .textContent =
-    total;
+  document.getElementById("rwScore").textContent = rw.score;
+  document.getElementById("mathScore").textContent = math.score;
+  document.getElementById("totalScore").textContent = total;
 
 
 
   /* =======================================================
      ADAPTIVE BADGES
   ======================================================= */
-
-  const rwBadge =
-    document.getElementById("rwRouteBadge");
-
-  const rwRoute =
-    document.getElementById("rwRouteText");
-
+  const rwBadge = document.getElementById("rwRouteBadge");
+  const rwRoute = document.getElementById("rwRouteText");
 
   if(rw.hard){
-
-    rwBadge.textContent =
-      "HARD";
-
-    rwRoute.textContent =
-      "Module 2 → Hard";
-
+    rwBadge.textContent = "HARD";
+    rwRoute.textContent = "Module 2 → Hard";
   }else{
-
-    rwBadge.textContent =
-      "STANDARD";
-
-    rwRoute.textContent =
-      "Module 2 → Standard";
-
+    rwBadge.textContent = "STANDARD";
+    rwRoute.textContent = "Module 2 → Standard";
   }
 
 
 
-  const mathBadge =
-    document.getElementById("mathRouteBadge");
-
-  const mathRoute =
-    document.getElementById("mathRouteText");
-
+  const mathBadge = document.getElementById("mathRouteBadge");
+  const mathRoute = document.getElementById("mathRouteText");
 
   if(math.hard){
-
-    mathBadge.textContent =
-      "HARD";
-
-    mathRoute.textContent =
-      "Module 2 → Hard";
-
+    mathBadge.textContent = "HARD";
+    mathRoute.textContent = "Module 2 → Hard";
   }else{
-
-    mathBadge.textContent =
-      "STANDARD";
-
-    mathRoute.textContent =
-      "Module 2 → Standard";
-
+    mathBadge.textContent = "STANDARD";
+    mathRoute.textContent = "Module 2 → Standard";
   }
 
 
 
   /* =======================================================
-     CHILD MOOD
+     CHILD MOOD (Holat o'zgarishlari)
   ======================================================= */
+  const overallCard = document.getElementById("overallCard");
+  const message = document.getElementById("scoreMessage");
 
-  const child =
-    document.getElementById("child");
-
-  const overallCard =
-    document.getElementById("overallCard");
-
-  const message =
-    document.getElementById("scoreMessage");
-
-
-  child.classList.remove(
-    "happy",
-    "excited"
-  );
-
-  overallCard.classList.remove(
-    "dice-on"
-  );
-
+  overallCard.classList.remove("dice-on");
 
   if(total >= 1400){
-
-    child.classList.add("excited");
-
     overallCard.classList.add("dice-on");
-
-    message.textContent =
-      "Amazing! 1400+ — excellent work!";
-
+    message.textContent = "Amazing! 1400+ — excellent work!";
   }
-
   else if(total >= 1200){
-
-    child.classList.add("happy");
-
-    message.textContent =
-      "Great! 1200+ — keep pushing for 1400!";
-
+    message.textContent = "Great! 1200+ — keep pushing for 1400!";
   }
-
   else if(total >= 1000){
-
-    message.textContent =
-      "Good start — keep practicing!";
-
+    message.textContent = "Good start — keep practicing!";
   }
-
   else{
-
-    message.textContent =
-      "Keep practicing — you can improve.";
-
+    message.textContent = "Keep practicing — you can improve.";
   }
-
 }
 
 
